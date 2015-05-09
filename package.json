@@ -1,6 +1,6 @@
 {
   "name": "overwrite-language",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Overwrite request language using cookie or query parameter.",
   "author": {
     "name": "Damian Krzeminski",
