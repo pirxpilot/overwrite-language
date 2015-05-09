@@ -1,0 +1,29 @@
+{
+  "name": "overwrite-language",
+  "version": "0.0.0",
+  "description": "Overwrite request language using cookie or query parameter.",
+  "author": {
+    "name": "Damian Krzeminski",
+    "email": "pirxpilot@code42day.com",
+    "url": "https://code42day.com"
+  },
+  "repository": "code42day/overwrite-language",
+  "license": "MIT",
+  "keywords": [
+    "overwrite-language",
+    "localization",
+    "i18n",
+    "l10n",
+    "language",
+    "cookie"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "mocha": "^2.2.4",
+    "should": "^6.0.1"
+  },
+  "scripts": {
+    "test": "make check"
+  }
+}
