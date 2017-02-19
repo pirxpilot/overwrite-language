@@ -37,15 +37,15 @@ Overwritten language is set in `req.lang`
 
 ## License
 
-MIT © [code42day](https://code42day.com)
+MIT © [Damian Krzeminski](https://pirxpilot.me)
 
 [detect-language]: https://npmjs.org/package/detect-language
 
 [npm-image]: https://img.shields.io/npm/v/overwrite-language.svg
 [npm-url]: https://npmjs.org/package/overwrite-language
 
-[travis-url]: https://travis-ci.org/code42day/overwrite-language
-[travis-image]: https://img.shields.io/travis/code42day/overwrite-language.svg
+[travis-url]: https://travis-ci.org/pirxpilot/overwrite-language
+[travis-image]: https://img.shields.io/travis/pirxpilot/overwrite-language.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/code42day/overwrite-language.svg
-[gemnasium-url]: https://gemnasium.com/code42day/overwrite-language
+[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/overwrite-language.svg
+[gemnasium-url]: https://gemnasium.com/pirxpilot/overwrite-language

@@ -4,10 +4,10 @@
   "description": "Overwrite request language using cookie or query parameter.",
   "author": {
     "name": "Damian Krzeminski",
-    "email": "pirxpilot@code42day.com",
-    "url": "https://code42day.com"
+    "email": "pirxpilot@furkot.com",
+    "url": "https://pirxpilot.me"
   },
-  "repository": "code42day/overwrite-language",
+  "repository": "pirxpilot/overwrite-language",
   "license": "MIT",
   "keywords": [
     "overwrite-language",
