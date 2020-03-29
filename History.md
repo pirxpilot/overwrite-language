@@ -1,4 +1,11 @@
 
+1.0.1 / 2020-03-29
+==================
+
+ * update dependency links in Readme
+ * replace .npmignore with package.files
+ * update dependencies
+
 1.0.0 / 2020-03-29
 ==================
 
