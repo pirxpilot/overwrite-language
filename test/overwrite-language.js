@@ -1,18 +1,18 @@
-var overwriteLanguage = require('../');
+const overwriteLanguage = require('../');
 
 describe('overwrite-language node module', function () {
 
   beforeEach(function() {
-    var locale = {
+    const locale = {
       supportedLanguages: ['de', 'fr', 'pl', 'en-GB', 'en-US'],
       defaultLanguage: 'en'
     };
     this.ol = overwriteLanguage(locale);
     this.res = {
-      cookie: function(name, value) {
+      cookie(name, value) {
         this._cookie[name] = value;
       },
-      clearCookie: function() {
+      clearCookie() {
         delete this._cookie;
       },
       _cookie: {},
@@ -20,7 +20,7 @@ describe('overwrite-language node module', function () {
   });
 
   it('does not change req.lang if present', function (done) {
-    var req = {
+    const req = {
       hostname: 'www.example.fr',
       lang: 'be'
     };
@@ -32,7 +32,7 @@ describe('overwrite-language node module', function () {
   });
 
   it('detects language from hostname', function (done) {
-    var req = {
+    const req = {
       hostname: 'www.example.fr'
     };
 
@@ -43,11 +43,11 @@ describe('overwrite-language node module', function () {
   });
 
   it('detects language from query parameter', function (done) {
-    var req = {
+    const req = {
       hostname: 'www.example.com',
       query: { hl: 'pl' }
     };
-    var cookie = this.res._cookie;
+    const cookie = this.res._cookie;
 
     this.ol(req, this.res, function(err) {
       req.should.have.property('lang', 'pl');
@@ -57,7 +57,7 @@ describe('overwrite-language node module', function () {
   });
 
   it('detects language from cookie', function (done) {
-    var req = {
+    const req = {
       hostname: 'www.example.com',
       query: {},
       cookies: {
