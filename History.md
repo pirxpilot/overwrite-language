@@ -1,4 +1,10 @@
 
+1.0.0 / 2020-03-29
+==================
+
+ * mark language cookie as `SameSite=none`
+ * rewrite in ES6
+
 0.2.2 / 2017-02-18
 ==================
 
