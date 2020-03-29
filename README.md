@@ -1,6 +1,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Dependency Status][gemnasium-image]][gemnasium-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # overwrite-language
 
@@ -47,5 +48,8 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [travis-url]: https://travis-ci.org/pirxpilot/overwrite-language
 [travis-image]: https://img.shields.io/travis/pirxpilot/overwrite-language.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/overwrite-language.svg
-[gemnasium-url]: https://gemnasium.com/pirxpilot/overwrite-language
+[deps-image]: https://img.shields.io/david/pirxpilot/overwrite-language.svg
+[deps-url]: https://david-dm.org/pirxpilot/overwrite-language
+
+[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/overwrite-language.svg
+[deps-dev-url]: https://david-dm.org/pirxpilot/overwrite-language?type=dev
