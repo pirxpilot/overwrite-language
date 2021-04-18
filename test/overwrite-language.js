@@ -42,6 +42,30 @@ describe('overwrite-language node module', function () {
     });
   });
 
+  it('detects language from subdomain', function (done) {
+    const req = {
+      hostname: 'fr.example.com'
+    };
+
+    this.ol(req, {}, function(err) {
+      req.should.have.property('lang', 'fr');
+      done(err);
+    });
+  });
+
+  it('ignores unsuported subdomains', function (done) {
+    const req = {
+      hostname: 'no.example.com',
+      cookies: {},
+      query: {}
+    };
+
+    this.ol(req, {}, function(err) {
+      req.should.not.have.property('lang');
+      done(err);
+    });
+  });
+
   it('detects language from query parameter', function (done) {
     const req = {
       hostname: 'www.example.com',
