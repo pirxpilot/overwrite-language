@@ -1,4 +1,9 @@
 
+1.1.0 / 2021-04-18
+==================
+
+ * add support for overwriting language using subdomain
+
 1.0.1 / 2020-03-29
 ==================
 
