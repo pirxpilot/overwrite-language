@@ -1,7 +1,6 @@
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][build-image]][build-url]
 [![Dependency Status][deps-image]][deps-url]
-[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # overwrite-language
 
@@ -42,14 +41,12 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 
 [detect-language]: https://npmjs.org/package/detect-language
 
-[npm-image]: https://img.shields.io/npm/v/overwrite-language.svg
+[npm-image]: https://img.shields.io/npm/v/overwrite-language
 [npm-url]: https://npmjs.org/package/overwrite-language
 
-[travis-url]: https://travis-ci.org/pirxpilot/overwrite-language
-[travis-image]: https://img.shields.io/travis/pirxpilot/overwrite-language.svg
+[build-url]: https://github.com/pirxpilot/overwrite-language/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/overwrite-language/check.yaml?branch=main
 
-[deps-image]: https://img.shields.io/david/pirxpilot/overwrite-language.svg
-[deps-url]: https://david-dm.org/pirxpilot/overwrite-language
+[deps-image]: https://img.shields.io/librariesio/release/npm/overwrite-language
+[deps-url]: https://libraries.io/npm/overwrite-language
 
-[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/overwrite-language.svg
-[deps-dev-url]: https://david-dm.org/pirxpilot/overwrite-language?type=dev
