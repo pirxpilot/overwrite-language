@@ -3,7 +3,6 @@ const assert = require('node:assert/strict');
 const overwriteLanguage = require('../');
 
 describe('overwrite-language node module', function () {
-
   beforeEach(function () {
     const locale = {
       supportedLanguages: ['de', 'fr', 'pl', 'en-GB', 'en-US'],
@@ -17,7 +16,7 @@ describe('overwrite-language node module', function () {
       clearCookie() {
         delete this._cookie;
       },
-      _cookie: {},
+      _cookie: {}
     };
   });
 
@@ -96,5 +95,4 @@ describe('overwrite-language node module', function () {
       done(err);
     });
   });
-
 });
