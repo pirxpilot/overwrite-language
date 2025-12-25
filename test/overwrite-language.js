@@ -2,7 +2,7 @@ const { describe, it, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
 const overwriteLanguage = require('../');
 
-describe('overwrite-language node module', function () {
+describe('overwrite-language node module', () => {
   beforeEach(function () {
     const locale = {
       supportedLanguages: ['de', 'fr', 'pl', 'en-GB', 'en-US'],
@@ -26,7 +26,7 @@ describe('overwrite-language node module', function () {
       lang: 'be'
     };
 
-    this.ol(req, {}, function (err) {
+    this.ol(req, {}, err => {
       assert.equal(req.lang, 'be');
       done(err);
     });
@@ -37,7 +37,7 @@ describe('overwrite-language node module', function () {
       hostname: 'www.example.fr'
     };
 
-    this.ol(req, {}, function (err) {
+    this.ol(req, {}, err => {
       assert.equal(req.lang, 'fr');
       done(err);
     });
@@ -48,7 +48,7 @@ describe('overwrite-language node module', function () {
       hostname: 'fr.example.com'
     };
 
-    this.ol(req, {}, function (err) {
+    this.ol(req, {}, err => {
       assert.equal(req.lang, 'fr');
       done(err);
     });
@@ -61,7 +61,7 @@ describe('overwrite-language node module', function () {
       query: {}
     };
 
-    this.ol(req, {}, function (err) {
+    this.ol(req, {}, err => {
       assert.ok(!req.lang);
       done(err);
     });
@@ -74,7 +74,7 @@ describe('overwrite-language node module', function () {
     };
     const cookie = this.res._cookie;
 
-    this.ol(req, this.res, function (err) {
+    this.ol(req, this.res, err => {
       assert.equal(req.lang, 'pl');
       assert.equal(cookie.hl, 'pl');
       done(err);
@@ -90,7 +90,7 @@ describe('overwrite-language node module', function () {
       }
     };
 
-    this.ol(req, this.res, function (err) {
+    this.ol(req, this.res, err => {
       assert.equal(req.lang, 'de');
       done(err);
     });
