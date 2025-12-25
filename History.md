@@ -1,4 +1,11 @@
 
+2.0.0 / 2025-12-25
+==================
+
+ * add more tests
+ * transition to ESM format
+ * upgrade `biome` to 2.3.10
+
 1.2.1 / 2025-06-02
 ==================
 
