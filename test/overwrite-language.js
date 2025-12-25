@@ -93,3 +93,81 @@ test('detects language from cookie', function (t, done) {
     done(err);
   });
 });
+
+test('clears cookie when hl query parameter is empty', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: { hl: '' },
+    path: '/test',
+    cookies: {}
+  };
+  let cookieCleared = false;
+  const res = {
+    clearCookie(name) {
+      t.assert.equal(name, 'hl');
+      cookieCleared = true;
+    }
+  };
+
+  this.ol(req, res, err => {
+    t.assert.ok(cookieCleared, 'clearCookie should be called');
+    t.assert.ok(!req.lang);
+    done(err);
+  });
+});
+
+test('ignores unsupported language from query parameter', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: { hl: 'unsupported' },
+    path: '/test',
+    secure: false
+  };
+  const cookie = this.res._cookie;
+
+  this.ol(req, this.res, err => {
+    t.assert.ok(!req.lang, 'req.lang should not be set for unsupported language');
+    t.assert.equal(cookie.hl, 'unsupported', 'cookie should still be set');
+    done(err);
+  });
+});
+
+test('ignores unsupported language from cookie', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: {},
+    cookies: {
+      hl: 'unsupported'
+    }
+  };
+
+  this.ol(req, this.res, err => {
+    t.assert.ok(!req.lang, 'req.lang should not be set for unsupported language');
+    done(err);
+  });
+});
+
+test('sets cookie with secure and sameSite=none when request is secure', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: { hl: 'pl' },
+    path: '/test',
+    secure: true
+  };
+  let cookieOptions;
+  const res = {
+    cookie(name, value, options) {
+      t.assert.equal(name, 'hl');
+      t.assert.equal(value, 'pl');
+      cookieOptions = options;
+    }
+  };
+
+  this.ol(req, res, err => {
+    t.assert.equal(req.lang, 'pl');
+    t.assert.ok(cookieOptions, 'cookie options should be set');
+    t.assert.equal(cookieOptions.secure, true);
+    t.assert.equal(cookieOptions.sameSite, 'none');
+    done(err);
+  });
+});
