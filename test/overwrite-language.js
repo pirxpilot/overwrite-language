@@ -1,98 +1,95 @@
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('node:assert/strict');
-const overwriteLanguage = require('../');
+import test, { beforeEach } from 'node:test';
+import overwriteLanguage from '../lib/overwrite-language.js';
 
-describe('overwrite-language node module', () => {
-  beforeEach(function () {
-    const locale = {
-      supportedLanguages: ['de', 'fr', 'pl', 'en-GB', 'en-US'],
-      defaultLanguage: 'en'
-    };
-    this.ol = overwriteLanguage(locale);
-    this.res = {
-      cookie(name, value) {
-        this._cookie[name] = value;
-      },
-      clearCookie() {
-        delete this._cookie;
-      },
-      _cookie: {}
-    };
+beforeEach(function () {
+  const locale = {
+    supportedLanguages: ['de', 'fr', 'pl', 'en-GB', 'en-US'],
+    defaultLanguage: 'en'
+  };
+  this.ol = overwriteLanguage(locale);
+  this.res = {
+    cookie(name, value) {
+      this._cookie[name] = value;
+    },
+    clearCookie() {
+      delete this._cookie;
+    },
+    _cookie: {}
+  };
+});
+
+test('does not change req.lang if present', function (t, done) {
+  const req = {
+    hostname: 'www.example.fr',
+    lang: 'be'
+  };
+
+  this.ol(req, {}, err => {
+    t.assert.equal(req.lang, 'be');
+    done(err);
   });
+});
 
-  it('does not change req.lang if present', function (_, done) {
-    const req = {
-      hostname: 'www.example.fr',
-      lang: 'be'
-    };
+test('detects language from hostname', function (t, done) {
+  const req = {
+    hostname: 'www.example.fr'
+  };
 
-    this.ol(req, {}, err => {
-      assert.equal(req.lang, 'be');
-      done(err);
-    });
+  this.ol(req, {}, err => {
+    t.assert.equal(req.lang, 'fr');
+    done(err);
   });
+});
 
-  it('detects language from hostname', function (_, done) {
-    const req = {
-      hostname: 'www.example.fr'
-    };
+test('detects language from subdomain', function (t, done) {
+  const req = {
+    hostname: 'fr.example.com'
+  };
 
-    this.ol(req, {}, err => {
-      assert.equal(req.lang, 'fr');
-      done(err);
-    });
+  this.ol(req, {}, err => {
+    t.assert.equal(req.lang, 'fr');
+    done(err);
   });
+});
 
-  it('detects language from subdomain', function (_, done) {
-    const req = {
-      hostname: 'fr.example.com'
-    };
+test('ignores unsuported subdomains', function (t, done) {
+  const req = {
+    hostname: 'no.example.com',
+    cookies: {},
+    query: {}
+  };
 
-    this.ol(req, {}, err => {
-      assert.equal(req.lang, 'fr');
-      done(err);
-    });
+  this.ol(req, {}, err => {
+    t.assert.ok(!req.lang);
+    done(err);
   });
+});
 
-  it('ignores unsuported subdomains', function (_, done) {
-    const req = {
-      hostname: 'no.example.com',
-      cookies: {},
-      query: {}
-    };
+test('detects language from query parameter', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: { hl: 'pl' }
+  };
+  const cookie = this.res._cookie;
 
-    this.ol(req, {}, err => {
-      assert.ok(!req.lang);
-      done(err);
-    });
+  this.ol(req, this.res, err => {
+    t.assert.equal(req.lang, 'pl');
+    t.assert.equal(cookie.hl, 'pl');
+    done(err);
   });
+});
 
-  it('detects language from query parameter', function (_, done) {
-    const req = {
-      hostname: 'www.example.com',
-      query: { hl: 'pl' }
-    };
-    const cookie = this.res._cookie;
+test('detects language from cookie', function (t, done) {
+  const req = {
+    hostname: 'www.example.com',
+    query: {},
+    cookies: {
+      hl: 'de'
+    }
+  };
 
-    this.ol(req, this.res, err => {
-      assert.equal(req.lang, 'pl');
-      assert.equal(cookie.hl, 'pl');
-      done(err);
-    });
-  });
-
-  it('detects language from cookie', function (_, done) {
-    const req = {
-      hostname: 'www.example.com',
-      query: {},
-      cookies: {
-        hl: 'de'
-      }
-    };
-
-    this.ol(req, this.res, err => {
-      assert.equal(req.lang, 'de');
-      done(err);
-    });
+  this.ol(req, this.res, err => {
+    t.assert.equal(req.lang, 'de');
+    done(err);
   });
 });
